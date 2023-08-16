@@ -1,0 +1,54 @@
+DATA_DIR	data/fluocells-resized1/
+train_percentage	0.8
+input_dim	3
+output_dim	2
+batch_size	2
+learning_rate	0.001
+num_epochs	10
+dropout_rate	0.7
+model_description	UNet(
+  (down1): DoubleConv(
+    (double_conv): Sequential(
+      (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (4): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU(inplace=True)
+    )
+  )
+  (down2): DoubleConv(
+    (double_conv): Sequential(
+      (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (4): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU(inplace=True)
+    )
+  )
+  (down3): DoubleConv(
+    (double_conv): Sequential(
+      (0): Conv2d(8, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (4): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU(inplace=True)
+    )
+  )
+  (up3): ConvTranspose2d(4, 8, kernel_size=(2, 2), stride=(2, 2))
+  (up2): ConvTranspose2d(16, 16, kernel_size=(2, 2), stride=(2, 2))
+  (up1): ConvTranspose2d(32, 2, kernel_size=(2, 2), stride=(2, 2))
+)
+optimizer	Adam
+epoch_losses	0.6188053072026346	0.5820339316815402	0.5807640104167229	0.5805874788655644	0.5804972142244862	0.5804917353444394	0.580428867213494	0.5804130893892947	0.5803823729531955	0.5803891367616907
+test_metrics	dice	452	58	138	423	0.0	0.0	243	566	26	0.0	93	265	289	261	306	202	0.0	262	141	38	263	491	238	115	479	482	339	0.0	229	60	225	178	80	84	0.0	0.0	249	665	630	710	760	636	644	757	580	685	275	257	513	354	213	467	447	513	393	454	592
+test_metrics	image_total_pixels	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000	120000
+test_metrics	tp	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+test_metrics	tn	452	58	138	423	0.0	0.0	243	566	26	0.0	93	265	289	261	306	202	0.0	262	141	38	263	491	238	115	479	482	339	0.0	229	60	225	178	80	84	0.0	0.0	249	665	630	710	760	636	644	757	580	685	275	257	513	354	213	467	447	513	393	454	592
+test_metrics	fp	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+test_metrics	fn	64	106	7	102	0.0	215	133	15	133	0.0	103	221	293	138	82	110	29	177	183	150	194	181	181	64	233	73	108	52	231	110	125	37	1	3	91	77	111	61	130	172	40	137	150	47	109	110	58	64	169	154	31	96	153	111	8	74	165
+test_metrics	total_reject	119484	119836	119855	119475	120000	119785	119624	119419	119841	120000	119804	119514	119418	119601	119612	119688	119971	119561	119676	119812	119543	119328	119581	119821	119288	119445	119553	119948	119540	119830	119650	119785	119919	119913	119909	119923	119640	119274	119240	119118	119200	119227	119206	119196	119311	119205	119667	119679	119318	119492	119756	119437	119400	119376	119599	119472	119243
+elapsed_time	7:23:12.945341
+end_time	2023-08-13 01:15:08.208588
